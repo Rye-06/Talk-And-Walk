@@ -52,11 +52,7 @@ const Register = () => {
     <div>
         {error &&
           error.map((e) => (
-            <div
-              className={`${
-                success ? "text-green-800" : "text-red-600"
-              } px-5 py-2`}
-            >
+            <div>
               {e}
             </div>
           ))}

@@ -23,7 +23,7 @@ export async function POST(req) {
       console.log(errorList);
       return NextResponse.json({ msg: errorList });
     } else {
-      return NextResponse.json({ msg: ["Unable to register user."] });
+      return NextResponse.json({ msg: ["User unable to register."] });
     }
   }
 }
