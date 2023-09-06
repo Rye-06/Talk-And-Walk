@@ -8,12 +8,24 @@ export async function POST(req) {
 
   try {
     await connectDB();
-    await Register.create({ name, email, password });
+    
+    const check = await Register.findOne({email:email, password: password}) 
 
-    return NextResponse.json({
-      msg: ["User registered sucessfully!"],
-      success: true,
-    });
+     if (check) {
+          return NextResponse.json({
+          msg: ["User already exists."],
+          success: true,
+          });
+      }
+      else {
+
+        await Register.create({ name, email, password });
+
+        return NextResponse.json({
+          msg: ["User registered sucessfully!"],
+          success: true,
+        });
+      }
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       let errorList = [];

@@ -1,8 +1,24 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '@/Components/Navbar'
+import './globals.css'
+import Cookies from 'universal-cookie';
 
 const page = () => {
+
+  const cookie = new Cookies();
+
+  useEffect(() => {
+    // onload check if the user is logged in
+    if (cookie.get('email') == null) {
+      // user doesn't exist
+    } 
+    else{
+      // user exists
+      window.location.replace('http://localhost:3000/Home');
+    }
+  }, []);
+
   return (
     <>
     <Navbar />

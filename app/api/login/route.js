@@ -13,6 +13,7 @@ try {
     if (check) {
         return NextResponse.json({
         msg: ["User logged in sucessfully!"],
+        name: [JSON.stringify(check.name)],
         success: true,
         });
     }

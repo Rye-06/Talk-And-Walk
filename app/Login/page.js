@@ -1,8 +1,25 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '@/Components/Navbar'
+import '../globals.css'
+import Cookies from 'universal-cookie';
 
 const Login = () => {
+
+  const cookie = new Cookies();
+
+  useEffect(() => {
+    // onload check if the user is logged in
+    if (cookie.get('email') == null) {
+      // user doesn't exist
+    } 
+    else{
+      // user exists
+      window.location.replace('http://localhost:3000/Home');
+    }
+  }, []);
+
+  const [name, setName] = useState()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const [error, setError] = useState([]);
@@ -25,9 +42,18 @@ const Login = () => {
       }),
     });
 
-    const { msg, success } = await res.json();
+    const { msg, name, success } = await res.json();
     setError(msg);
+    setName(name);
     setSuccess(success);
+
+    if (success) {
+      window.location.replace('http://localhost:3000/Home');
+      // set cookies
+      cookie.set('name', name)
+      cookie.set('email', email)
+      cookie.set('password', password)
+    }
   };
 
 
