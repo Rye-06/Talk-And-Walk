@@ -11,6 +11,8 @@ const LoginNavbar = () => {
     cookie.remove('name')
     cookie.remove('email')
     cookie.remove('password')
+    cookie.remove('age')
+    cookie.remove('interests')
   }
 
   return (

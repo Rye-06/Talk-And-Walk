@@ -25,6 +25,9 @@ const Register = () => {
   const [error, setError] = useState([]);
   const [success, setSuccess] = useState(false);
 
+  const age = 0
+  const interests = ""
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -41,6 +44,8 @@ const Register = () => {
         name,
         email,
         password,
+        age,
+        interests,
       }),
     });
 
@@ -49,11 +54,13 @@ const Register = () => {
     setSuccess(success);
 
     if (success) {
-      window.location.replace('http://localhost:3000/Home');
+      window.location.replace('http://localhost:3000/MoreInfo');
       // set cookies
       cookie.set('name', name)
       cookie.set('email', email)
       cookie.set('password', password)
+      cookie.set('age', 0)
+      cookie.set('interests', "")
     }
   };
 

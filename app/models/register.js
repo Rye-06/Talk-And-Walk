@@ -18,7 +18,16 @@ const registerSchema = new Schema({
   password: {
     type: String,
     required: [true, "Password is required."],
-  }
+  },
+
+  age: {
+    type: Number,
+    required: [true, "Age is required."],
+  },
+
+  interests: {
+    type: String,
+  },
 });
 
 const Register =

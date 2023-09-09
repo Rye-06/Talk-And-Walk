@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 
 export async function POST(req) {
-  const { name, email, password } = await req.json();
+  const { name, email, password, age, interests } = await req.json();
 
   try {
     await connectDB();
@@ -13,13 +13,12 @@ export async function POST(req) {
 
      if (check) {
           return NextResponse.json({
-          msg: ["User already exists."],
-          success: true,
+          msg: ["User already exists."]
           });
       }
       else {
 
-        await Register.create({ name, email, password });
+        await Register.create({ name, email, password, age, interests });
 
         return NextResponse.json({
           msg: ["User registered sucessfully!"],

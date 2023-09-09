@@ -22,6 +22,8 @@ const Login = () => {
   const [name, setName] = useState()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
+  const [age, setAge] = useState()
+  const [interests, setInterests] = useState()
   const [error, setError] = useState([]);
   const [success, setSuccess] = useState(false);
 
@@ -42,9 +44,11 @@ const Login = () => {
       }),
     });
 
-    const { msg, name, success } = await res.json();
+    const { msg, name, age, interests, success } = await res.json();
     setError(msg);
     setName(name);
+    setAge(age);
+    setInterests(interests);
     setSuccess(success);
 
     if (success) {
@@ -53,6 +57,8 @@ const Login = () => {
       cookie.set('name', name)
       cookie.set('email', email)
       cookie.set('password', password)
+      cookie.set('age', age)
+      cookie.set('interests', interests)
     }
   };
 

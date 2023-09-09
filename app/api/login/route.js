@@ -14,6 +14,8 @@ try {
         return NextResponse.json({
         msg: ["User logged in sucessfully!"],
         name: [JSON.stringify(check.name)],
+        age: [check.age],
+        interests: [JSON.stringify(check.interests)],
         success: true,
         });
     }
