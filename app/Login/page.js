@@ -52,13 +52,20 @@ const Login = () => {
     setSuccess(success);
 
     if (success) {
+
+    // set cookies
+    cookie.set('name', name)
+    cookie.set('email', email)
+    cookie.set('password', password)
+    cookie.set('age', age)
+    cookie.set('interests', interests)
+
+    if (age == 0) {
+        window.location.replace('http://localhost:3000/MoreInfo');
+    }
+    else {
       window.location.replace('http://localhost:3000/Home');
-      // set cookies
-      cookie.set('name', name)
-      cookie.set('email', email)
-      cookie.set('password', password)
-      cookie.set('age', age)
-      cookie.set('interests', interests)
+    }
     }
   };
 
