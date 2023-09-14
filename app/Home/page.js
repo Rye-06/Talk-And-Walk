@@ -18,7 +18,7 @@ const home = () => {
     } 
     else{
       // user exists
-      // get value of name
+      // gets value of name
       let n = cookie.get('name').toString()
       n = n.replaceAll('"', '')
       setName(n)

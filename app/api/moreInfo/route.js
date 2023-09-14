@@ -9,21 +9,16 @@ export async function POST(req) {
   try {
     await connectDB();
     
-    const filterAge = { email: email };
+    const filter = { email: email };
+    
     const updateAge = { age: age };
-
-    const filterInt = { email: email };
     const updateInt = { interests: interests };
     
-    await Register.findOneAndUpdate(filterAge, updateAge);
-    await Register.findOneAndUpdate(filterInt, updateInt);
-
-    const check = await Register.findOne({email:email}) 
+    await Register.findOneAndUpdate(filter, updateAge);
+    await Register.findOneAndUpdate(filter, updateInt);
 
     return NextResponse.json({
     msg: ["Added extra information."],
-    age: [check.age],
-    interests: [JSON.stringify(check.interests)],
     success: true,
     });
 

@@ -26,7 +26,7 @@ const registerSchema = new Schema({
   },
 
   interests: {
-    type: String,
+    'type': {type: String},
   },
 });
 

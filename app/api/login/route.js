@@ -10,6 +10,8 @@ try {
     await connectDB();
     const check = await Register.findOne({email:email, password: password}) 
 
+    // CHECK IF AGE AND INTERESTS ARE UPDATED
+
     if (check) {
         return NextResponse.json({
         msg: ["User logged in sucessfully!"],

@@ -26,7 +26,7 @@ const Register = () => {
   const [success, setSuccess] = useState(false);
 
   const age = 0
-  const interests = ""
+  const interests = []
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,7 +60,7 @@ const Register = () => {
       cookie.set('email', email)
       cookie.set('password', password)
       cookie.set('age', 0)
-      cookie.set('interests', "")
+      cookie.set('interests', [])
     }
   };
 
