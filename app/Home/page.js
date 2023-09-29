@@ -11,6 +11,10 @@ const home = () => {
 
   useEffect(() => {
 
+    if (cookie.get('age') == 0) {
+      window.location.replace('http://localhost:3000/MoreInfo');
+    }
+
     // onload check if the user is logged in
     if (cookie.get('email') == null) {
       // user doesn't exist
@@ -29,6 +33,8 @@ const home = () => {
     <>
       <LoginNavbar />
       <h1>Welcome {name}!</h1>
+
+      <h2>People closest to you:</h2>
     </>
   )
 }

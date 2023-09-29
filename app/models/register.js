@@ -28,6 +28,12 @@ const registerSchema = new Schema({
   interests: {
     'type': {type: String},
   },
+  lat: {
+    'type': String
+  },
+  long: {
+    'type': String
+  },
 });
 
 const Register =

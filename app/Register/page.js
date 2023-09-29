@@ -28,12 +28,11 @@ const Register = () => {
   const age = 0
   const interests = []
 
+  const lat = ""
+  const long = ""
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("Name: ", name);
-    console.log("Email: ", email);
-    console.log("Password: ", password);
 
     const res = await fetch("../api/register", {
       method: "POST",
@@ -46,6 +45,8 @@ const Register = () => {
         password,
         age,
         interests,
+        lat,
+        long
       }),
     });
 

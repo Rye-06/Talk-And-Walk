@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 
 export async function POST(req) {
-  const {email, age, interests } = await req.json();
+  const {email, age, interests, lat, long } = await req.json();
 
   try {
     await connectDB();
@@ -13,9 +13,15 @@ export async function POST(req) {
     
     const updateAge = { age: age };
     const updateInt = { interests: interests };
+
+    const updateLat = { lat: lat };
+    const updateLong = { long: long };
     
     await Register.findOneAndUpdate(filter, updateAge);
     await Register.findOneAndUpdate(filter, updateInt);
+
+    await Register.findOneAndUpdate(filter, updateLat);
+    await Register.findOneAndUpdate(filter, updateLong);
 
     return NextResponse.json({
     msg: ["Added extra information."],

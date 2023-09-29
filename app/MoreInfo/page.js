@@ -2,6 +2,9 @@
 import React, {useState, useEffect} from 'react'
 import LoginNavbar from '@/Components/loginNavbar/loginNavbar'
 import Cookies from 'universal-cookie';
+import {
+  fromPlaceId
+} from "react-geocode";
 
 const MoreInfo = () => {
 
@@ -10,12 +13,29 @@ const MoreInfo = () => {
   const [age, setAge] = useState()
   const [interests, setInterests] = useState()
   const [error, setError] = useState([]);
+  const [address, setAddress] = useState([]);
   const [success, setSuccess] = useState(false);
 
   const email = cookie.get('email')
 
+  let lat = ""
+  let long = ""
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // getting lat and long based on the address
+
+    // Get latitude & longitude from place_id.
+    fromPlaceId(address)
+    .then(({ results }) => {
+      const { LAT, LNG } = results[0].geometry.location;
+      console.log(LAT, LNG);
+      lat = LAT;
+      long = LNG;
+    })
+    .catch(console.error);
+
 
     const res = await fetch("../api/moreInfo", {
       method: "POST",
@@ -25,7 +45,9 @@ const MoreInfo = () => {
       body: JSON.stringify({
         email,
         age,
-        interests
+        interests,
+        lat,
+        long
       }),
     });
 
@@ -63,8 +85,12 @@ const MoreInfo = () => {
     <form onSubmit={handleSubmit}>
     <input type = "number" placeholder='Enter Age' autoComplete='off' id = 'age' onChange={(e) => setAge(e.target.value)} value={age}></input>
     <input type = "text" placeholder='Enter Interests (Seperate Each By a Comma)' autoComplete='off' id = 'interests' onChange={(e) => sepInterests(e.target.value)} value={interests}></input>
+
+    <input type = "text" placeholder='Enter Address' autoComplete='off' id = 'address' onChange={(e) => setAddress(e.target.value)} value={address}></input>
     <button type = "submit">Submit</button>
     </form>
+
+    
 
     <div>
         {error &&
