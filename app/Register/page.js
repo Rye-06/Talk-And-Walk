@@ -28,8 +28,8 @@ const Register = () => {
   const age = 0
   const interests = []
 
-  const lat = ""
-  const long = ""
+  const lat = 0
+  const long = 0
 
   const handleSubmit = async (e) => {
     e.preventDefault();

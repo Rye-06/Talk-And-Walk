@@ -29,10 +29,10 @@ const registerSchema = new Schema({
     'type': {type: String},
   },
   lat: {
-    'type': String
+    'type': Number
   },
   long: {
-    'type': String
+    'type': Number
   },
 });
 
