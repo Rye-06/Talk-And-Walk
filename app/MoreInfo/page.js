@@ -65,6 +65,8 @@ const MoreInfo = () => {
       // set cookies
       cookie.set('age', age)
       cookie.set('interests', interests)
+      cookie.set('lat', lat)
+      cookie.set('long', long)
     }
   };
 

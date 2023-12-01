@@ -9,7 +9,11 @@ const home = () => {
 
   const [name, setName] = useState()
 
-  const [people, setPeople] = useState([])
+  const [lat, setLat] = useState()
+  
+  const [long, setLong] = useState()
+
+  const [people, setPeople] = useState([]);
 
   function distance(lat1, lon1, lat2, lon2) {
     const r = 6371; // km
@@ -21,6 +25,29 @@ const home = () => {
   
     return 2 * r * Math.asin(Math.sqrt(a));
   }
+
+  const handleOnload = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch("../api/home", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+      }),
+    });
+
+    const { msg, success } = await res.json();
+    setError(msg);
+    setSuccess(success);
+    setPeople(people)
+
+    if (success) {
+      window.location.replace('http://localhost:3000/MoreInfo');
+      console.log(people);
+    }
+  };
 
   useEffect(() => {
 
@@ -39,6 +66,7 @@ const home = () => {
       let n = cookie.get('name').toString()
       n = n.replaceAll('"', '')
       setName(n)
+      handleOnload()
     }
   }, []);
 
